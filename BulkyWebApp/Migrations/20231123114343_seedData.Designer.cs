@@ -3,6 +3,7 @@ using BulkyWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulkyWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231123114343_seedData")]
+    partial class seedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,8 +32,9 @@ namespace BulkyWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
+                    b.Property<string>("DisplayOrder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -44,25 +48,25 @@ namespace BulkyWebApp.Migrations
                         new
                         {
                             Id = 1,
-                            DisplayOrder = 1,
+                            DisplayOrder = "1",
                             Name = " Action"
                         },
                         new
                         {
                             Id = 2,
-                            DisplayOrder = 2,
+                            DisplayOrder = "2",
                             Name = " Sci-Fi"
                         },
                         new
                         {
                             Id = 3,
-                            DisplayOrder = 3,
+                            DisplayOrder = "3",
                             Name = " History"
                         },
                         new
                         {
                             Id = 4,
-                            DisplayOrder = 4,
+                            DisplayOrder = "4",
                             Name = " ABc"
                         });
                 });
